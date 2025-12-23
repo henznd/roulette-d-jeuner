@@ -21,7 +21,7 @@ type Restaurant = { id: string; name: string; cuisine_type: string; google_maps_
 type Vote = { id: string; user_id: string; restaurant_id: string; vote_date: string; is_double?: boolean }
 type Banishment = { id: string; user_id: string; restaurant_id: string; banishment_date: string }
 
-export default function LunchSquadPage() {
+export default function LunchRoulettePage() {
   const [session, setSession] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [debugHour, setDebugHour] = useState<number | null>(null)
@@ -472,9 +472,15 @@ export default function LunchSquadPage() {
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/10 border-b border-white/20 px-6 py-4 shadow-2xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent drop-shadow-lg">
-              LunchSquad 🥡
-            </h1>
+            <div className="text-4xl">🎰</div>
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-2">
+                <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent drop-shadow-lg">
+                  LunchRoulette
+                </h1>
+                <span className="text-xs text-white/60 font-medium">by baptiste</span>
+              </div>
+            </div>
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 border-2 border-white/50 px-3 py-1 text-xs font-black rounded-full text-white shadow-lg">
               v2.0
             </span>

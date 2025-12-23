@@ -120,7 +120,7 @@ export function AuthForm() {
                     {isForgotPassword
                         ? 'Entrez votre email pour réinitialiser'
                         : isSignUp
-                            ? 'Rejoignez LunchSquad !'
+                            ? 'Rejoignez LunchRoulette !'
                             : 'Bon retour parmi nous 👋'
                     }
                 </p>
