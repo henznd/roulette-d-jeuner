@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { useRouter }
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
