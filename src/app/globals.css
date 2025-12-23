@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Wavestone Official Colors - D'après la charte */
+  --color-background: #0A0A1F;
+  /* Fond très sombre (presque noir avec teinte bleue) */
+  --color-foreground: #ffffff;
+  --color-primary: #5D2EE8;
+  /* VIOLET WAVESTONE OFFICIEL (vif et saturé) */
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #00FF94;
+  /* Vert citron Wavestone */
+  --color-secondary-foreground: #000000;
+  --color-accent: #E91E63;
+  /* Rose accent */
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #ffffff;
+  --color-muted: #1E293B;
+  --color-muted-foreground: #94A3B8;
+  --color-border: #ffffff;
+  --color-input: #ffffff;
+  --color-ring: #5D2EE8;
+
+  /* Card - Glassmorphism */
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+
+  /* Popover */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #000000;
+
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radius - Plus subtil pour un look pro */
+  --radius: 0.75rem;
+
+  /* Charts */
+  --color-chart-1: #5D2EE8;
+  --color-chart-2: #00FF94;
+  --color-chart-3: #E91E63;
+  --color-chart-4: #8B5CF6;
+  --color-chart-5: #EC4899;
+
+  /* Sidebar */
+  --color-sidebar: var(--color-background);
+  --color-sidebar-foreground: var(--color-foreground);
+  --color-sidebar-primary: var(--color-primary);
+  --color-sidebar-primary-foreground: var(--color-primary-foreground);
+  --color-sidebar-accent: var(--color-accent);
+  --color-sidebar-accent-foreground: var(--color-accent-foreground);
+  --color-sidebar-border: var(--color-border);
+  --color-sidebar-ring: var(--color-ring);
+}
+
+/* Glassmorphism utilities - Plus subtils et professionnels */
+@utility glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@utility glass-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Subtle glow - Pas trop agressif */
+@utility glow-subtle {
+  box-shadow: 0 0 20px -5px rgba(93, 46, 232, 0.3);
+}
+
+@utility glow-strong {
+  box-shadow: 0 0 30px -5px rgba(93, 46, 232, 0.5), 0 0 60px -10px rgba(93, 46, 232, 0.3);
+}
+
+/* Smooth animations */
+@keyframes subtle-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@utility animate-subtle-pulse {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
