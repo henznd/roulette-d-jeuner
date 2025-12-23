@@ -323,11 +323,17 @@ export default function LunchRoulettePage() {
 
       {/* Logo */}
       <div className="relative z-10 text-center space-y-8 mb-8">
-        <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
-          Lunch<br />Squad 🥡
-        </h1>
+        <div className="inline-flex items-center gap-4 justify-center">
+          <div className="text-7xl md:text-8xl">🎰</div>
+          <div>
+            <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent drop-shadow-2xl">
+              LunchRoulette
+            </h1>
+            <p className="text-base text-white/60 font-medium mt-2">by baptiste</p>
+          </div>
+        </div>
         <p className="text-2xl text-white/90 font-bold drop-shadow-lg">
-          La roulette des repas 🎰
+          La roue de la fortune des déjeuners 🍽️
         </p>
       </div>
 
