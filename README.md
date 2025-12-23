@@ -1,189 +1,128 @@
-# LunchSquad 🍔
+# LunchRoulette 🎰
 
-Application de vote quotidien pour choisir le restaurant du déjeuner en équipe, avec système de véto et gamification.
+**by baptiste**
 
-## 🚀 Quick Start
+La roue de la fortune des déjeuners d'équipe - Plus de débats, juste du fun !
 
-### Prérequis
-- Node.js 18+
-- Compte Supabase (https://supabase.com)
+## 🚀 Déploiement
 
-### Installation
+**Production** : [Votre URL Vercel](https://your-app.vercel.app)
 
-1. **Cloner et installer**
+## 🛠️ Stack Technique
+
+- **Framework** : Next.js 16 + React 19
+- **Styling** : Tailwind CSS 4 + shadcn/ui
+- **Backend** : Supabase (Auth + Database + Realtime)
+- **Animations** : Framer Motion + Canvas Confetti
+- **Hosting** : Vercel
+
+## 📦 Installation Locale
+
 ```bash
+# 1. Installer les dépendances
 npm install
-```
 
-2. **Configuration Supabase**
+# 2. Configurer les variables d'environnement
+# Créer .env.local avec :
+NEXT_PUBLIC_SUPABASE_URL=your_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_key
 
-Créer `.env.local` :
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-```
-
-3. **Setup de la base de données**
-
-Dans le SQL Editor de Supabase, exécuter dans l'ordre :
-
-```bash
-# 1. Schéma de base
-schema.sql
-
-# 2. Schéma Admin & Settings
-admin_schema.sql
-
-# 3. Trigger auto-création profils
-trigger_auto_profile.sql
-
-# 4. (Optionnel mais recommandé) Politiques RLS renforcées
-enhanced_rls.sql
-```
-
-4. **Définir l'administrateur**
-
-```bash
-# Remplacer l'email par le vôtre dans restrict_admin.js si besoin
-node restrict_admin.js
-```
-
-5. **Lancer l'application**
-```bash
+# 3. Lancer en dev
 npm run dev
+# App disponible sur http://localhost:3000
 ```
 
-Ouvrir http://localhost:3000
+## 🎯 Features
 
----
+- ✅ **Multi-Teams** : Plusieurs équipes isolées
+- ✅ **Vote System** : Vote simple ou double (1x/mois)
+- ✅ **Roue de la Fortune** : Sélection pondérée dramatique
+- ✅ **Bannissement** : Exclure un resto (1x/mois)
+- ✅ **Auth Supabase** : Email + Password
+- ✅ **Admin Dashboard** : Gestion complète (users, restos, settings)
+- ✅ **Real-time** : Votes en temps réel
+- ✅ **Design Apple-like** : UI premium avec gradients et animations
 
-## 🔧 Scripts Utilitaires
-
-### `make_admins.js`
-Promouvoir tous les utilisateurs en Admin (pour tests)
-```bash
-node make_admins.js
-```
-
-### `restrict_admin.js`
-Restreindre l'admin à un seul email
-```bash
-node restrict_admin.js
-```
-
-### `reset_password.js`
-Réinitialiser le mot de passe d'un utilisateur
-```bash
-# Modifier l'email/userId dans le fichier avant
-node reset_password.js
-```
-
-### `verify_db.js`
-Afficher l'état actuel de la table `profiles`
-```bash
-node verify_db.js
-```
-
----
-
-## 🎮 Fonctionnalités
-
-### Pour les utilisateurs
-- ✅ Inscription / Connexion par email/mot de passe
-- ✅ Vote quotidien pour un restaurant (changement possible)
-- ✅ Véto hebdomadaire (bloque un resto pour tout le monde)
-- ✅ Vote aléatoire si indécis
-- ✅ Résultats automatiques à l'heure de fermeture (défaut: 12h)
-- ✅ Confettis pour le gagnant 🎉
-
-### Pour les admins
-- ✅ Modifier l'heure de clôture des votes
-- ✅ Activer/désactiver des jours de la semaine
-- ✅ Ajouter/supprimer des restaurants
-
----
-
-## 📁 Structure
+## 📁 Structure du Projet
 
 ```
 roulette-d-jeuner/
 ├── src/
-│   ├── app/
-│   │   ├── page.tsx          # Page principale (logique de jeu)
-│   │   ├── layout.tsx
-│   │   └── globals.css       # Styles Neubrutalism
-│   ├── components/
-│   │   ├── AuthForm.tsx      # Formulaire connexion/inscription
+│   ├── app/              # Pages Next.js
+│   │   ├── page.tsx      # Page principale (votes + roue)
+│   │   ├── admin/        # Dashboard admin
+│   │   ├── create-team/  # Création d'équipe
+│   │   └── join-team/    # Rejoindre une équipe
+│   ├── components/       # Composants React
 │   │   ├── RestaurantCard.tsx
-│   │   ├── ResultsView.tsx
-│   │   ├── AdminSettingsDialog.tsx
-│   │   └── ui/               # shadcn/ui components
-│   └── lib/
-│       ├── supabase.ts       # Client Supabase
-│       └── utils.ts
-├── schema.sql                # Schéma DB initial
-├── admin_schema.sql          # Schéma Admin + Settings
-├── trigger_auto_profile.sql  # Auto-création profils
-├── enhanced_rls.sql          # Sécurité RLS
-└── *.js                      # Scripts utilitaires
+│   │   ├── SpinWheel.tsx
+│   │   ├── VotersPanel.tsx
+│   │   └── ui/           # shadcn components
+│   └── lib/              # Utils
+│       └── supabase.ts   # Client Supabase
+├── public/               # Assets statiques
+├── docs/                 # Documentation & scripts
+│   ├── database/         # Migrations SQL
+│   └── scripts/          # Scripts setup
+└── package.json
 ```
 
----
+## 🗄️ Base de Données
 
-## 🔐 Sécurité
+**Tables principales** :
+- `teams` : Équipes
+- `profiles` : Utilisateurs (lié à auth.users)
+- `restaurants` : Restaurants par team
+- `votes` : Votes quotidiens
+- `banishments` : Bannissements mensuels
+- `app_settings` : Configuration (horaires, jours actifs)
 
-### Row Level Security (RLS)
-- ✅ Les profils sont visibles par tous, modifiables par leur propriétaire uniquement
-- ✅ Seuls les admins peuvent modifier `app_settings`
-- ✅ Les votes/vetos sont liés à l'utilisateur authentifié
-- ✅ Un utilisateur ne peut pas se promouvoir admin lui-même
+**RLS Policies** : Isolation complète par `team_id`
 
-### Admin
-- L'email admin est défini dans `trigger_auto_profile.sql` et `restrict_admin.js`
-- Par défaut: `fousouley2002@gmail.com`
-- Pour changer: modifier ces fichiers puis re-exécuter
+## 🔧 Scripts Utiles
 
----
+```bash
+# Build production
+npm run build
 
-## 🐛 Debug
+# Linter
+npm run lint
 
-### Mode Debug Temps
-Boutons en bas à gauche de l'app :
-- **[DEBUG] AVANT-JEU** : Simule une heure avant fermeture
-- **[DEBUG] APRES-JEU** : Simule après fermeture (mode résultats)
-- **[DEBUG] RESET** : Revient à l'heure réelle
+# Déploiement
+git push origin main  # Auto-deploy Vercel
+```
 
-### Logs Console
-L'application log abondamment dans la console :
-- `📱` Initial session
-- `🔍` Vérification admin
-- `✅` Profil chargé
-- `👑` Mode Admin activé
-- `❌` Erreurs
+## 📚 Documentation
 
----
+- [Guide de Déploiement Vercel](/.gemini/antigravity/brain/.../vercel_deployment_guide.md)
+- [Guide Test & Itération](/.gemini/antigravity/brain/.../testing_iteration_guide.md)
+- [Templates Email Supabase](/.gemini/antigravity/brain/.../email_templates_guide.md)
 
-## 📝 TODO / Améliorations Futures
+## 🎨 Design Tokens
 
-- [ ] Reset automatique des vétos chaque semaine (actuellement: reset quotidien)
-- [ ] Historique des gagnants
-- [ ] Statistiques de votes par resto
-- [ ] Notifications push (Expo/PWA)
-- [ ] Mode sombre
-- [ ] Traductions i18n
+**Couleurs principales** :
+- Primary Purple : `#5D2EE8`
+- Secondary Pink : `#E91E63`
+- Background gradients : `from-[#5D2EE8] to-[#E91E63]`
 
----
+**Animations** :
+- Smooth transitions (200-300ms)
+- Framer Motion pour les composants
+- Confetti sur victoire roue
 
-## 🛠️ Tech Stack
+## 🚦 Workflow de Développement
 
-- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **UI**: shadcn/ui, Framer Motion, Lucide Icons
-- **Backend**: Supabase (PostgreSQL, Auth, Realtime)
-- **Design**: Neubrutalism (bordures dures, couleurs pop, ombres marquées)
+1. Faire un changement en local
+2. Tester avec `npm run dev`
+3. Commit : `git commit -m "Description"`
+4. Push : `git push origin main`
+5. Vercel déploie automatiquement ! (2-3 min)
 
----
+## 📝 License
 
-## 📄 License
+Projet personnel - © 2025 Baptiste
 
-Projet personnel - Tous droits réservés
+## 🤝 Contributeurs
+
+- **Baptiste** - Créateur & Développeur principal
