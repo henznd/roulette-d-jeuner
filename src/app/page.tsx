@@ -1,5 +1,8 @@
 'use client'
 
+// Force dynamic rendering (needed for Supabase auth)
+export const dynamic = 'force-dynamic'
+
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { RestaurantCard } from '@/components/RestaurantCard'
